@@ -1,12 +1,5 @@
 ---
 jobs:
-- name: update-pulledpork-docker
-  plan:
-  - get: snort-release-source
-    trigger: true
-  - put: docker-image-repo
-    params:
-      build: snort-release-source/ci/docker/pulledpork
 
 - name: update-release-git
   plan:
@@ -94,14 +87,6 @@ resources:
     uri: {{snort-release-uri}}
     branch: {{snort-release-branch}}
 
-- name: docker-image-repo
-  type: docker-image
-  source:
-    email: {{docker-email}}
-    username: {{docker-username}}
-    password: {{docker-password}}
-    repository: {{docker-repository}}
-
 - name: snort-blobs-yml
   type: s3-iam
   source:
@@ -133,6 +118,7 @@ resources:
     versioned_file: releases-dir-snort.tgz
     region_name: {{s3-bosh-releases-region}}
     server_side_encryption: AES256
+
 
 resource_types:
 - name: s3-iam
