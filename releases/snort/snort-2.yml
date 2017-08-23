@@ -1,0 +1,23 @@
+name: snort
+version: "2"
+commit_hash: 42b1c42
+uncommitted_changes: false
+jobs:
+- name: snort
+  version: e214ca7b74488de7a75e40b353fedafff894494f
+  fingerprint: e214ca7b74488de7a75e40b353fedafff894494f
+  sha1: 1c51763e4ff9fd0c8594f47b65b386912e0b0f1d
+- name: snort-config
+  version: aa5a05bd56a18a469a50d20d2d63a9e225a463cc
+  fingerprint: aa5a05bd56a18a469a50d20d2d63a9e225a463cc
+  sha1: 5e1e088dbd0d85d9dd7a62eab4683fddf07e6735
+packages:
+- name: snort
+  version: 599446f64988c920635ce09b1eee2ab4bcdfc54f
+  fingerprint: 599446f64988c920635ce09b1eee2ab4bcdfc54f
+  sha1: d6c6eab7dfefc7eef8db2189e42075e24a3bdfaa
+  dependencies: []
+license:
+  version: 6e7db3731ae698cffc3a6a701183175445a288d9
+  fingerprint: 6e7db3731ae698cffc3a6a701183175445a288d9
+  sha1: 465b9cb734d5981144b4c031871619254d18acd8
