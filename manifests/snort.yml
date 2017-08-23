@@ -1,0 +1,33 @@
+name: &name snort
+
+releases:
+- name: snort
+  version: latest
+
+instance_groups:
+- name: snort
+  azs: [z1]
+  instances: 1
+  vm_type: default
+  stemcell: default
+  persistent_disk_type: default
+  networks:
+  - name: default
+  jobs:
+  - name: snort
+    release: snort
+  # properties:
+  #   snort:
+  #     rules: todo
+
+update:
+  canaries: 1
+  max_in_flight: 1
+  serial: true
+  canary_watch_time: 3000-30000
+  update_watch_time: 3000-30000
+
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: latest
