@@ -1,9 +1,9 @@
-FROM perl:latest
+# from https://github.com/curator/docker-pulledpork
 
-WORKDIR /opt
+FROM centos
 
-RUN curl -L http://cpanmin.us | perl - App::cpanminus
-RUN cpanm LWP::UserAgent Crypt::SSLeay
 
-RUN wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/pulledpork/pulledpork-0.7.0.tar.gz
-RUN tar xf pulledpork-0.7.0.tar.gz
+RUN /usr/bin/yum -y install tar perl-LWP-Protocol-https perl-Crypt-SSLeay perl-Sys-Syslog perl-Archive-Tar perl-Mozilla-CA && yum clean all
+RUN /usr/bin/curl -O "https://pulledpork.googlecode.com/files/pulledpork-0.7.0.tar.gz" && /usr/bin/tar xzvf pulledpork-0.7.0.tar.gz && /usr/bin/chmod +x pulledpork-0.7.0/pulledpork.pl && /usr/bin/ln -s /pulledpork-0.7.0/pulledpork.pl /usr/local/bin/pulledpork
+
+ENTRYPOINT ["/usr/local/bin/pulledpork"]
