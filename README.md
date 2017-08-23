@@ -1,64 +1,60 @@
-# BOSH Release for cg-snort
+# BOSH Release for Snort IDS
 
 ## Usage
 
-To use this bosh release, first upload it to your bosh:
+### Setting up local environment
 
-```
-bosh target BOSH_HOST
-git clone https://github.com/cloudfoundry-community/cg-snort-boshrelease.git
-cd cg-snort-boshrelease
-bosh upload release releases/cg-snort-1.yml
-```
+1. Assumes Bosh2 is installed with binary named `bosh`.
 
-For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:
+1. Setup a local BOSH2 environment with VBOX: <https://github.com/cloudfoundry/bosh-deployment>. Tip: use `export BOSH_ENVIRONMENT=vbox` to avoid needing to pass `-e vbox` to all subsequent `bosh` commands.
 
-```
-templates/make_manifest warden
-bosh -n deploy
+1. Remember to apply the provided BOSH cloud-config: <https://github.com/cloudfoundry/bosh-deployment/blob/master/warden/cloud-config.yml>
+
+```bash
+bosh update-cloud-config ./warden/cloud-config.yml
 ```
 
-For AWS EC2, create a single VM:
+1. fetch a stemcell from bosh.io
 
-```
-templates/make_manifest aws-ec2
-bosh -n deploy
-```
-
-### Override security groups
-
-For AWS & Openstack, the default deployment assumes there is a `default` security group. If you wish to use a different security group(s) then you can pass in additional configuration when running `make_manifest` above.
-
-Create a file `my-networking.yml`:
-
-``` yaml
----
-networks:
-  - name: cg-snort1
-    type: dynamic
-    cloud_properties:
-      security_groups:
-        - cg-snort
+```bash
+bosh upload stemcell https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-trusty-go_agent
 ```
 
-Where `- cg-snort` means you wish to use an existing security group called `cg-snort`.
+### Deploying Default graylog deployment
 
-You now suffix this file path to the `make_manifest` command:
+The base manifest `manifests/graylog.yml` should "Just Work".
+It is setup with with BOSH linking so no static-ip addresses or specific settings should be required.  It uses `default` for vm_type, stemcell, persistent_disk_type, and networks as setup in the cloud-config above.
 
+### Using Operator files
+
+BOSH2 operator files allow you to extend/replace parts of the default deployment manifest.
+
+#### network customisation - `manifests/operators/network.yml`
+
+This operator allows you to deploy to a cloud-config network that isn't `default`.
+eg.
+
+```bash
+bosh deploy -n -d snort manifests/snort.yml \
+    -o manifests/operators/network.yml \
+    -v network-name=foo
 ```
-templates/make_manifest openstack-nova my-networking.yml
-bosh -n deploy
-```
 
-### Development
+## Local Development
 
-As a developer of this release, create new releases and upload them:
+You can make changes and create local dev releases.
 
-```
-bosh create release --force && bosh -n upload release
+```bash
+bosh create-release --force --name snort
+
+bosh upload-release
+
+bosh deploy -d snort manifests/snort.yml
 ```
 
 ### Final releases
+
+todo
 
 To share final releases:
 
@@ -72,5 +68,3 @@ By default the version number will be bumped to the next major number. You can s
 ```
 bosh create release --final --version 2.1
 ```
-
-After the first release you need to contact [Dmitriy Kalinin](mailto://dkalinin@pivotal.io) to request your project is added to https://bosh.io/releases (as mentioned in README above).
