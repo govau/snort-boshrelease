@@ -88,40 +88,41 @@ resources:
     branch: {{snort-release-branch}}
 
 - name: snort-blobs-yml
-  type: s3-iam
+  type: s3
   source:
-    region_name: {{s3-bosh-releases-region}}
+    access_key_id: {{s3-access-key-id}}
+    secret_access_key: {{s3-secret-access-key}}
     bucket: {{s3-bosh-releases-bucket}}
-    versioned_file: snort-blobs.yml
+    region_name: {{s3-bosh-releases-region}}
     server_side_encryption: AES256
+    versioned_file: snort-blobs.yml
 
 - name: release-tarball
-  type: s3-iam
+  type: s3
   source:
-    region_name: {{s3-bosh-releases-region}}
+    access_key_id: {{s3-access-key-id}}
+    secret_access_key: {{s3-secret-access-key}}
     bucket: {{s3-bosh-releases-bucket}}
-    regexp: snort-(.*).tgz
+    region_name: {{s3-bosh-releases-region}}
     server_side_encryption: AES256
+    regexp: snort-(.*).tgz
 
 - name: final-builds-dir-tarball
-  type: s3-iam
+  type: s3
   source:
+    access_key_id: {{s3-access-key-id}}
+    secret_access_key: {{s3-secret-access-key}}
     bucket: {{s3-bosh-releases-bucket}}
-    versioned_file: final-builds-dir-snort.tgz
     region_name: {{s3-bosh-releases-region}}
     server_side_encryption: AES256
+    versioned_file: final-builds-dir-snort.tgz
 
 - name: releases-dir-tarball
-  type: s3-iam
+  type: s3
   source:
+    access_key_id: {{s3-access-key-id}}
+    secret_access_key: {{s3-secret-access-key}}
     bucket: {{s3-bosh-releases-bucket}}
-    versioned_file: releases-dir-snort.tgz
     region_name: {{s3-bosh-releases-region}}
     server_side_encryption: AES256
-
-
-resource_types:
-- name: s3-iam
-  type: docker-image
-  source:
-    repository: 18fgsa/s3-resource
+    versioned_file: releases-dir-snort.tgz
