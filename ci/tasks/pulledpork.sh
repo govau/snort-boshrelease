@@ -4,7 +4,7 @@ set -e -u -x
 
 DIR=$(pwd)
 
-cd snort-release-source/ci/config/snort-conf
+cd snort-boshrelease-git/ci/config/snort-conf
 
 sed -i.orig "s/<oinkcode>/$OINKCODE/" ../pulledpork.conf
 
@@ -15,4 +15,4 @@ perl /opt/pulledpork-0.7.0/pulledpork.pl \
 
 cd $DIR
 
-cp -r snort-release-source/. snort-pulledpork-source
+cp -r snort-boshrelease-git/. pulledpork-output

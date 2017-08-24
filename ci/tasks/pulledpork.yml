@@ -7,10 +7,10 @@ image_resource:
     repository: 18fgsa/pulledpork
 
 inputs:
-- name: snort-release-source
+- name: snort-boshrelease-git
 
 outputs:
-- name: snort-pulledpork-source
+- name: pulledpork-output
 
 run:
-  path: snort-release-source/ci/tasks/pulledpork.sh
+  path: snort-boshrelease-git/ci/tasks/pulledpork.sh

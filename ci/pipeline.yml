@@ -1,69 +1,26 @@
 ---
 jobs:
 
-- name: update-release-git
-  plan:
-  - get: snort-release-source
-    trigger: true
-  - get: snort-blobs-yml
-  - get: final-builds-dir-tarball
-  - get: releases-dir-tarball
-  - task: pulledpork
-    file: snort-release-source/ci/tasks/pulledpork.yml
-    params:
-      OINKCODE: {{oinkcode}}
-      SNORT_VERSION: {{snort-version}}
-  - task: update-blobs
-    file: snort-release-source/ci/tasks/update-release.yml
-    params:
-      PRIVATE_YML: {{private-yml}}
-      FORCE_UPDATE: 1
-  - aggregate:
-    - put: snort-blobs-yml
-      params:
-        file: snort-bosh-source/config/blobs.yml
-    - put: release-tarball
-      params:
-        file: finalized-release/snort-*.tgz
-    - put: final-builds-dir-tarball
-      params:
-        file: finalized-release/final-builds-dir-snort.tgz
-    - put: releases-dir-tarball
-      params:
-        file: finalized-release/releases-dir-snort.tgz
-
-- name: update-release-rules
+- name: update-snort-boshrelease-rules
   plan:
   - get: timer
     trigger: true
-  - get: snort-release-source
-  - get: snort-blobs-yml
-    trigger: true
-  - get: final-builds-dir-tarball
-  - get: releases-dir-tarball
+  - get: snort-boshrelease-git
   - task: pulledpork
-    file: snort-release-source/ci/tasks/pulledpork.yml
+    file: snort-boshrelease-git/ci/tasks/pulledpork.yml
     params:
       OINKCODE: {{oinkcode}}
       SNORT_VERSION: {{snort-version}}
-  - task: update-blobs
-    file: snort-release-source/ci/tasks/update-release.yml
+  - task: update-snort-conf
+    file: snort-boshrelease-git/ci/tasks/update-snort-conf.yml
     params:
-      PRIVATE_YML: {{private-yml}}
-      FORCE_UPDATE: 0
+      S3_ACCESS_KEY_ID: {{s3-access-key-id}}
+      S3_SECRET_ACCESS_KEY: {{s3-secret-access-key}}
   - aggregate:
-    - put: snort-blobs-yml
+    - put: snort-boshrelease-git
       params:
-        file: snort-bosh-source/config/blobs.yml
-    - put: release-tarball
-      params:
-        file: finalized-release/snort-*.tgz
-    - put: final-builds-dir-tarball
-      params:
-        file: finalized-release/final-builds-dir-snort.tgz
-    - put: releases-dir-tarball
-      params:
-        file: finalized-release/releases-dir-snort.tgz
+        rebase: true
+        repository: snort-boshrelease-git-modified
 
 resources:
 - name: timer
@@ -71,48 +28,9 @@ resources:
   source:
     interval: 1h
 
-- name: snort-release-source
+- name: snort-boshrelease-git
   type: git
   source:
-    uri: {{snort-release-uri}}
     branch: {{snort-release-branch}}
-
-- name: snort-blobs-yml
-  type: s3
-  source:
-    access_key_id: {{s3-access-key-id}}
-    secret_access_key: {{s3-secret-access-key}}
-    bucket: {{s3-bosh-releases-bucket}}
-    region_name: {{s3-bosh-releases-region}}
-    server_side_encryption: AES256
-    versioned_file: snort-blobs.yml
-
-- name: release-tarball
-  type: s3
-  source:
-    access_key_id: {{s3-access-key-id}}
-    secret_access_key: {{s3-secret-access-key}}
-    bucket: {{s3-bosh-releases-bucket}}
-    region_name: {{s3-bosh-releases-region}}
-    server_side_encryption: AES256
-    regexp: snort-(.*).tgz
-
-- name: final-builds-dir-tarball
-  type: s3
-  source:
-    access_key_id: {{s3-access-key-id}}
-    secret_access_key: {{s3-secret-access-key}}
-    bucket: {{s3-bosh-releases-bucket}}
-    region_name: {{s3-bosh-releases-region}}
-    server_side_encryption: AES256
-    versioned_file: final-builds-dir-snort.tgz
-
-- name: releases-dir-tarball
-  type: s3
-  source:
-    access_key_id: {{s3-access-key-id}}
-    secret_access_key: {{s3-secret-access-key}}
-    bucket: {{s3-bosh-releases-bucket}}
-    region_name: {{s3-bosh-releases-region}}
-    server_side_encryption: AES256
-    versioned_file: releases-dir-snort.tgz
+    private_key: {{github-private-key}}
+    uri: {{snort-release-uri}}
