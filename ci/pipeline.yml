@@ -15,25 +15,20 @@ jobs:
       SNORT_VERSION: {{snort-version}}
   - task: update-blobs
     file: snort-release-source/ci/tasks/update-release.yml
-    tags: [iaas]
     params:
       PRIVATE_YML: {{private-yml}}
       FORCE_UPDATE: 1
   - aggregate:
     - put: snort-blobs-yml
-      tags: [iaas]
       params:
         file: snort-bosh-source/config/blobs.yml
     - put: release-tarball
-      tags: [iaas]
       params:
         file: finalized-release/snort-*.tgz
     - put: final-builds-dir-tarball
-      tags: [iaas]
       params:
         file: finalized-release/final-builds-dir-snort.tgz
     - put: releases-dir-tarball
-      tags: [iaas]
       params:
         file: finalized-release/releases-dir-snort.tgz
 
@@ -52,26 +47,21 @@ jobs:
       OINKCODE: {{oinkcode}}
       SNORT_VERSION: {{snort-version}}
   - task: update-blobs
-    tags: [iaas]
     file: snort-release-source/ci/tasks/update-release.yml
     params:
       PRIVATE_YML: {{private-yml}}
       FORCE_UPDATE: 0
   - aggregate:
     - put: snort-blobs-yml
-      tags: [iaas]
       params:
         file: snort-bosh-source/config/blobs.yml
     - put: release-tarball
-      tags: [iaas]
       params:
         file: finalized-release/snort-*.tgz
     - put: final-builds-dir-tarball
-      tags: [iaas]
       params:
         file: finalized-release/final-builds-dir-snort.tgz
     - put: releases-dir-tarball
-      tags: [iaas]
       params:
         file: finalized-release/releases-dir-snort.tgz
 
