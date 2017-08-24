@@ -32,12 +32,25 @@ BOSH2 operator files allow you to extend/replace parts of the default deployment
 #### network customisation - `manifests/operators/network.yml`
 
 This operator allows you to deploy to a cloud-config network that isn't `default`.
-eg.
+
+For example:
 
 ```bash
-bosh deploy -n -d snort manifests/snort.yml \
+bosh deploy -d snort manifests/snort.yml \
     -o manifests/operators/network.yml \
     -v network-name=foo
+```
+
+#### VM type - `manifests/operators/vm-type.yml`
+
+By default snort uses the `default` vm_type.  This ops file allows you to change this.
+
+For example:
+
+```bash
+bosh deploy -d snort manifests/snort.yml \
+    -o manifests/operators/vm-type.yml \
+    -v vm-type=foo
 ```
 
 ## Local Development
