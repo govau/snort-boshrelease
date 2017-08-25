@@ -16,6 +16,7 @@ jobs:
     params:
       S3_ACCESS_KEY_ID: {{s3-access-key-id}}
       S3_SECRET_ACCESS_KEY: {{s3-secret-access-key}}
+      GITHUB_USERNAME: {{github-username}}
   - aggregate:
     - put: snort-boshrelease-git
       params:
