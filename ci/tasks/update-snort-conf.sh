@@ -17,8 +17,8 @@ blobstore:
 EOF
 
 bosh -n sync-blobs
-
-if [ "$(cat ci/config/snort-conf/rules/snort.rules | sha1sum)" != "$(tar -xOf blobs/snort-conf.tar.gz snort-conf/rules/snort.rules | sha1sum)" ] ; then
+SNORT_RULES_SHA1=$(cat ci/config/snort-conf/rules/snort.rules | sha1sum)
+if [ "${SNORT_RULES_SHA1}" != "$(tar -xOf blobs/snort-conf.tar.gz snort-conf/rules/snort.rules | sha1sum)" ] ; then
 
   echo "snort rules have changed"
 
@@ -38,7 +38,9 @@ if [ "$(cat ci/config/snort-conf/rules/snort.rules | sha1sum)" != "$(tar -xOf bl
     git config --global user.name "dta-snort-ci"
   fi
 
-  git commit config/blobs.yml -m"Update rules"
+  git commit config/blobs.yml -m"Update rules
+
+snort.rules SHA1: ${SNORT_RULES_SHA1}"
 else
   echo "snort rules have not changed"
 fi
