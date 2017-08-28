@@ -27,6 +27,19 @@ It uses `default` for vm_type, stemcell, persistent_disk_type, and networks as s
 
 Snort is configured to log alerts with the [alert_fast output module](http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node21.html#SECTION00362000000000000000)
 
+### Updating snort rules
+
+The snort configuration and rules are packaged in the snort-conf.tar.gz bosh blob.
+
+These rules are kept up to date with a [concourse CI pipeline](tree/master/ci) which periodically downloads the latest community rules from snort.org.
+
+The pipeline periodically:
+- Fetches the current community rules using [pulledpork](https://github.com/shirkdog/pulledpork)
+- Compares the downloaded snort.rules with the version in the snort-conf.tar.gz blob, and creates a new version of the blob if it has changed.
+- The new blob is added and uploaded using `bosh add-blob` and `bosh upload-blobs`, and the new config/blobs.yml is checked into this repository.
+
+A release must then be manually created with the latest blob version.
+
 ### Using Operator files
 
 BOSH2 operator files allow you to extend/replace parts of the default deployment manifest.
