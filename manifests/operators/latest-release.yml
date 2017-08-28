@@ -1,0 +1,7 @@
+---
+
+- type: replace
+  path: /releases/name=snort
+  value:
+    name: snort
+    version: latest
