@@ -1,0 +1,28 @@
+name: snort
+version: 1.0.0
+commit_hash: adcea83
+uncommitted_changes: false
+jobs:
+- name: snort
+  version: ac46dc4de7ac2a762a1ca7525fe1268de62b223a
+  fingerprint: ac46dc4de7ac2a762a1ca7525fe1268de62b223a
+  sha1: 317141941066cb51ead753730b7e530a20ca7fdd
+- name: snort-config
+  version: aa5a05bd56a18a469a50d20d2d63a9e225a463cc
+  fingerprint: aa5a05bd56a18a469a50d20d2d63a9e225a463cc
+  sha1: 5e1e088dbd0d85d9dd7a62eab4683fddf07e6735
+packages:
+- name: golang1.6
+  version: 2cb90236e7a822cf532ef6e99cdb295973b05f77
+  fingerprint: 2cb90236e7a822cf532ef6e99cdb295973b05f77
+  sha1: 098d772ae2698ed1466b1dd88eb312ba5fa300f3
+  dependencies: []
+- name: snort
+  version: 0bfa79aca5d8e952534a69b5fd8b9599b0664cbf
+  fingerprint: 0bfa79aca5d8e952534a69b5fd8b9599b0664cbf
+  sha1: 75beba84407962d95ec41291e3be965672a297d1
+  dependencies: []
+license:
+  version: 6e7db3731ae698cffc3a6a701183175445a288d9
+  fingerprint: 6e7db3731ae698cffc3a6a701183175445a288d9
+  sha1: 465b9cb734d5981144b4c031871619254d18acd8
