@@ -43,7 +43,7 @@ bosh deploy -d snort manifests/snort.yml \
     -v central-logging-listener=10.244.0.7:5044
 ```
 
-#### network customisation - `manifests/operators/network.yml`
+#### network customisation - `manifests/operators/networking.yml`
 
 This operator allows you to deploy to a cloud-config network that isn't `default`.
 
@@ -51,7 +51,7 @@ For example:
 
 ```bash
 bosh deploy -d snort manifests/snort.yml \
-    -o manifests/operators/network.yml \
+    -o manifests/operators/networking.yml \
     -v network-name=foo
 ```
 
