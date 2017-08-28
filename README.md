@@ -53,6 +53,17 @@ bosh deploy -d snort manifests/snort.yml \
     -v vm-type=foo
 ```
 
+#### Log all packets for debugging - `manifests/operators/log-all-packets.yml`
+
+This operator allows you to add a snort rule which will match all packets. This is useful for debugging.
+
+For example:
+
+```bash
+bosh deploy -d snort manifests/snort.yml \
+    -o manifests/operators/log-all-packets.yml
+```
+
 ## Local Development
 
 You can make changes and create local dev releases.
