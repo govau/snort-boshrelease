@@ -18,3 +18,6 @@ templates:
 properties:
   snort.rules:
     description: "Custom snort rules"
+  snort.interface-name:
+    description: "Interface for snort to bind to"
+    default: "eth0"
