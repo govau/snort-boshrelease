@@ -20,14 +20,28 @@ bosh update-cloud-config ./warden/cloud-config.yml
 bosh upload stemcell https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-trusty-go_agent
 ```
 
-### Deploying Default graylog deployment
+### Deploying Default snort deployment
 
-The base manifest `manifests/graylog.yml` should "Just Work".
-It is setup with with BOSH linking so no static-ip addresses or specific settings should be required.  It uses `default` for vm_type, stemcell, persistent_disk_type, and networks as setup in the cloud-config above.
+The base manifest `manifests/snort.yml` should "Just Work".
+It uses `default` for vm_type, stemcell, persistent_disk_type, and networks as setup in the cloud-config above.
+
+Snort is configured to log alerts with the [alert_fast output module](http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node21.html#SECTION00362000000000000000)
 
 ### Using Operator files
 
 BOSH2 operator files allow you to extend/replace parts of the default deployment manifest.
+
+#### Add filebeat - `manifests/operators/filebeat.yml`
+
+This operator allows you to add `filebeat` to the snort instance. Filebeat is a logshipper from elastic (elastic.co).
+
+For example:
+
+```bash
+bosh deploy -d snort manifests/snort.yml \
+    -o manifests/operators/filebeat.yml \
+    -v central-logging-listener=10.244.0.7:5044
+```
 
 #### network customisation - `manifests/operators/network.yml`
 
@@ -77,14 +91,15 @@ bosh deploy -d snort manifests/snort.yml \
 
 ## Local Development
 
-You can make changes and create local dev releases.
+You can make changes and create local dev releases. These can then be deployed locally with the `latest-release.yml` operator file.
 
 ```bash
 bosh create-release --force --name snort
 
 bosh upload-release
 
-bosh deploy -d snort manifests/snort.yml
+bosh deploy -d snort manifests/snort.yml \
+  -o manifests/operators/latest-release.yml
 ```
 
 ## creating a final release
