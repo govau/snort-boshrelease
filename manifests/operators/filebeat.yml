@@ -1,0 +1,25 @@
+---
+
+- type: replace
+  path: /instance_groups/name=snort/jobs/-
+  value:
+    name: filebeat
+    release: filebeat
+    properties:
+      filebeat:
+        environment: snort
+        configuration: |
+          filebeat.prospectors:
+          - input_type: log
+            paths:
+              - /var/vcap/sys/log/snort-*/alert.fast*
+          output.logstash:
+            hosts: ["((central-logging-listener))"]
+
+- type: replace
+  path: /releases/-
+  value:
+    name: filebeat
+    version: 0.0.2
+    url: https://github.com/AusDTO/filebeat-boshrelease/releases/download/v0.0.2/filebeat-0.0.2.tgz
+    sha1: e2ed67b26729752f891142e755dd504074a8e810
