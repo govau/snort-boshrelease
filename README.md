@@ -68,8 +68,7 @@ bosh deploy -d snort manifests/snort.yml \
 
 By default snort will listen to lo and eth0. Use this file to change from eth0 to another interface. This is useful when testing on bosh-lite, as it seems to assign a random name to the network interface.
 
-For example:
-
+For ex
 ```bash
 bosh deploy -d snort manifests/snort.yml \
     -o manifests/operators/interface-name.yml \
@@ -88,19 +87,23 @@ bosh upload-release
 bosh deploy -d snort manifests/snort.yml
 ```
 
-### Final releases
+## creating a final release
 
-todo
-
-To share final releases:
-
+1.  create bosh final release (requires s3 credentials in `config/final.yml`)
 ```
-bosh create release --final
+export VERSION=x.y.z
+bosh create-release --final --version=$VERSION --name=snort --tarball=releases/snort/snort-$VERSION.tgz
 ```
-
-By default the version number will be bumped to the next major number. You can specify alternate versions:
-
-
+2. determine sha1 of tarball blob and update the `version`, `url` and `sha` details of the snort release in the `manifests/snort.yml` file
 ```
-bosh create release --final --version 2.1
+shasum releases/snort/snort-$VERSION.tgz
 ```
+3. commit and push changes
+```
+git add releases .final_builds/ manifests/snort.yml
+git commit -m"BOSH release $VERSION"
+git tag v$VERSION
+git push origin master
+git push --tags
+```
+4. Create a release from the new tag and upload the tarball `releases/snort/snort-$VERSION.tgz`
