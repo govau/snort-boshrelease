@@ -7,7 +7,6 @@ consumes:
 packages:
 - snort
 templates:
-  bin/alert: bin/alert
   bin/ctl: bin/ctl
   bin/monit_debugger: bin/monit_debugger
   data/properties.sh.erb: data/properties.sh
