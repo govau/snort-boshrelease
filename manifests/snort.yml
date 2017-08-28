@@ -19,11 +19,6 @@ instance_groups:
   jobs:
   - name: snort
     release: snort
-  - name: unifiedbeat
-    release: snort
-  properties:
-    snort:
-    central-logging-listener: ((central-logging-listener))
 
 update:
   canaries: 1
