@@ -64,6 +64,18 @@ bosh deploy -d snort manifests/snort.yml \
     -o manifests/operators/log-all-packets.yml
 ```
 
+#### Set interface name - `manifests/operators/interface-name.yml`
+
+By default snort will listen to lo and eth0. Use this file to change from eth0 to another interface. This is useful when testing on bosh-lite, as it seems to assign a random name to the network interface.
+
+For example:
+
+```bash
+bosh deploy -d snort manifests/snort.yml \
+    -o manifests/operators/interface-name.yml \
+    -v interface-name=wn7v8a123uqr-1
+```
+
 ## Local Development
 
 You can make changes and create local dev releases.
