@@ -3,6 +3,9 @@ name: &name snort
 releases:
 - name: snort
   version: latest
+  #version: 1.0.0
+  #url: https://github.com/govau/snort-boshrelease/releases/download/v1.0.0/snort-1.0.0.tgz
+  #sha1: abc
 
 instance_groups:
 - name: snort
