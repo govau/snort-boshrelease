@@ -26,11 +26,3 @@ snort-conf.tar.gz:
   size: 286483
   object_id: 3e0f35a7-5c9f-4503-6bf8-bcbf44f9487c
   sha: 2ee28fc119f6a521f754c767c1924edf8f2a38b9
-unifiedbeat/GeoLite2-City_20170801.tar.gz:
-  size: 27363693
-  object_id: 3c846a09-af8b-4312-6c28-b86804b7c5cc
-  sha: 1f1429379f8f622a382d355275f673978f355c8a
-unifiedbeat/unifiedbeat.bin:
-  size: 16382352
-  object_id: f56b269b-0592-4a3d-7199-fb2ac506789a
-  sha: 1b83ab6102ea70d4a30f9440adc70e739fec912f
