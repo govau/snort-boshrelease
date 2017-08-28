@@ -10,6 +10,9 @@ inputs:
 - name: pulledpork-output
 - name: snort-boshrelease-git
 
+caches:
+- path: pulledpork-output/blobs
+
 outputs:
 - name: snort-boshrelease-git-modified
 
