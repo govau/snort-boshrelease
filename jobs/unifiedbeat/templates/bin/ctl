@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+# Setup env vars and folders for the ctl script
+source /var/vcap/jobs/unifiedbeat/helpers/ctl_setup.sh 'unifiedbeat'
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE $JOB_NAME
+
+    # store pid in $PIDFILE
+    echo $$ > $PIDFILE
+
+    cd $STORE_DIR
+
+    # snort is running as root, so we also run unifiedbeat as root
+    exec unifiedbeat \
+      -c /var/vcap/jobs/$JOB_NAME/etc/unifiedbeat.yml \
+      >>$LOG_DIR/$JOB_NAME.stdout.log \
+      2>>$LOG_DIR/$JOB_NAME.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+  *)
+    echo "Usage: ctl {start|stop}"
+
+    ;;
+
+esac
+exit 0

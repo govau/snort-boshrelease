@@ -16,9 +16,14 @@ instance_groups:
   jobs:
   - name: snort
     release: snort
-  # properties:
-  #   snort:
-  #     rules: todo
+  - name: unifiedbeat
+    release: snort
+  properties:
+    snort:
+      interface-name: wn7v8a123uqr-1
+      rules:
+      - "alert ip any any -> any any ( msg: \"ICMP packet detected!\"; sid: 1; )"
+    central-logging-listener: ((central-logging-listener))
 
 update:
   canaries: 1

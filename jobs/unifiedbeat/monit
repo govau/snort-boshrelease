@@ -1,0 +1,5 @@
+check process unifiedbeat
+  with pidfile /var/vcap/sys/run/unifiedbeat/unifiedbeat.pid
+  start program "/var/vcap/jobs/unifiedbeat/bin/monit_debugger unifiedbeat_ctl '/var/vcap/jobs/unifiedbeat/bin/ctl start lo'"
+  stop program "/var/vcap/jobs/unifiedbeat/bin/monit_debugger unifiedbeat_ctl '/var/vcap/jobs/unifiedbeat/bin/ctl stop lo'"
+  group vcap

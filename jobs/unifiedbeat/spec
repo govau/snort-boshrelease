@@ -1,0 +1,25 @@
+---
+name: unifiedbeat
+
+templates:
+  bin/ctl: bin/ctl
+  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
+  etc/unifiedbeat.yml.erb: etc/unifiedbeat.yml
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+
+packages:
+- golang1.6
+- snort
+- unifiedbeat
+
+properties:
+  snort.interface-name:
+    description: "Interface for snort to bind to"
+    default: "eth0"
+  central-logging-listener:
+    description: "Elasticsearch path"
+  index-name:
+    description: "Index name - The default is 'unifiedbeat' and generates [unifiedbeat-]YYYY.MM.DD keys."
+    default: "unifiedbeat"

@@ -2,6 +2,9 @@ daq-2.0.6.tar.gz:
   size: 514687
   object_id: 6b26a6db-c902-4369-563d-d9decb9d367e
   sha: ec0ebfcd4568a3e4e58c774982c808c414dd71bc
+golang1.6/go1.6.linux-amd64.tar.gz:
+  size: 84799480
+  sha: 01a6a28dbe31a53103b600979bbbbd63a8104456
 libdnet-1.12.tar.gz:
   size: 959945
   object_id: 501e3f27-b005-460a-6670-cb65e512ef75
@@ -19,6 +22,11 @@ snort-2.9.9.0.tar.gz:
   object_id: e77ac4c2-8381-418b-61ff-cff05c8313ca
   sha: c522b6130655e0d12299af6fd1a613b20259b4e3
 snort-conf.tar.gz:
-  size: 286483
-  object_id: e682d885-4173-4020-642e-27bf5e7a81e7
-  sha: 63f186232a8b91866afde514262d7f00accbe1a1
+  size: 94474
+  sha: 84ac63014866980cafc596079df1ca930256bde7
+unifiedbeat/GeoLite2-City_20170801.tar.gz:
+  size: 27363693
+  sha: 1f1429379f8f622a382d355275f673978f355c8a
+unifiedbeat/unifiedbeat.bin:
+  size: 16382352
+  sha: 1b83ab6102ea70d4a30f9440adc70e739fec912f

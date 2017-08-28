@@ -1,0 +1,9 @@
+---
+name: unifiedbeat
+
+dependencies:
+- golang1.6
+
+files:
+- unifiedbeat/unifiedbeat.bin # from https://github.com/cleesmith/unifiedbeat/releases/tag/v2.0.1
+- unifiedbeat/GeoLite2-City_20170801.tar.gz # from https://dev.maxmind.com/geoip/geoip2/geolite2/
