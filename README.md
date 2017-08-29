@@ -58,7 +58,7 @@ bosh deploy -d snort manifests/snort.yml \
 
 #### network customisation - `manifests/operators/networking.yml`
 
-This operator allows you to deploy to a cloud-config network that isn't `default`.
+This operator allows you to deploy to a cloud-config network that isn't `default` and set a static ip.
 
 For example:
 
@@ -66,6 +66,7 @@ For example:
 bosh deploy -d snort manifests/snort.yml \
     -o manifests/operators/networking.yml \
     -v network-name=foo
+    -v static-ip=10.244.0.8
 ```
 
 #### VM type - `manifests/operators/vm-type.yml`
