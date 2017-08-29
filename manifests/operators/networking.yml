@@ -3,3 +3,4 @@
   path: /instance_groups/name=snort/networks/name=default?
   value:
     name: ((network-name))
+    static_ips: [((static-ip))]
