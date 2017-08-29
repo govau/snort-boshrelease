@@ -3,4 +3,4 @@
 - type: replace
   path: /instance_groups/name=snort/properties?/snort/rules
   value:
-    - 'alert ip any any -> any any ( msg: "ICMP packet detected!"; sid: 1; )'
+    - 'alert ip any any -> any any ( msg: "IP packet detected!"; sid: 1; )'
