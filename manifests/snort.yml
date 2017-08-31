@@ -2,9 +2,9 @@ name: &name snort
 
 releases:
 - name: snort
-  version: 1.0.0
-  url: https://github.com/govau/snort-boshrelease/releases/download/v1.0.0/snort-1.0.0.tgz
-  sha1: 414ef9ce60ea7cb373059bdfb81e5ac37bccf45f
+  version: 1.0.1
+  url: https://github.com/govau/snort-boshrelease/releases/download/v1.0.1/snort-1.0.1.tgz
+  sha1: f511d14196ceac7081288d42bce7dc1e8db609e9
 
 instance_groups:
 - name: snort
