@@ -1,7 +1,6 @@
 ---
 
 - type: replace
-  path: /instance_groups/name=snort/properties?/snort
+  path: /instance_groups/name=snort/properties/snort/rules?
   value:
-    rules:
-      - 'alert ip any any -> any any ( msg: "IP packet detected!"; sid: 1; )'
+  - 'alert ip any any -> any any ( msg: "IP packet detected!"; sid: 1; )'
