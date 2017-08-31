@@ -20,9 +20,9 @@ cp -rf ../snort-boshrelease-git/. ../snort-boshrelease-git-modified
 
 bosh -n sync-blobs
 SNORT_RULES_SHA1=$(cat ci/config/snort-conf/rules/snort.rules | sha1sum)
-if [ "${SNORT_RULES_SHA1}" != "$(tar -xOf blobs/snort-conf.tar.gz snort-conf/rules/snort.rules | sha1sum)" ] ; then
+if [ "$FORCE_UPDATE" -eq "1" ] || [ "${SNORT_RULES_SHA1}" != "$(tar -xOf blobs/snort-conf.tar.gz snort-conf/rules/snort.rules | sha1sum)" ] ; then
 
-  echo "snort rules have changed"
+  echo "Updating snort-conf"
 
   # create new snort-conf.tar.gz
   tar czvf snort-conf.tar.gz -C ci/config snort-conf
@@ -44,5 +44,5 @@ if [ "${SNORT_RULES_SHA1}" != "$(tar -xOf blobs/snort-conf.tar.gz snort-conf/rul
 
 snort.rules SHA1: ${SNORT_RULES_SHA1}"
 else
-  echo "snort rules have not changed"
+  echo "Not updating snort-conf - snort rules have not changed"
 fi
