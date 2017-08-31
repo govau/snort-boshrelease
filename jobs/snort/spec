@@ -19,3 +19,8 @@ properties:
   snort.interface-name:
     description: "Interface for snort to bind to"
     default: "eth0"
+  snort.checksum_mode:
+    description: "Types of packets to calculate checksums. Snort will skip packets with bad checksums. This is always set to 'none' for the 'lo' interface"
+    # Defaulting to none as in our environment, "all" appears to cause outgoing packets to always be skipped.
+    default: "none"
+    examples: none, all
