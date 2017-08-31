@@ -20,6 +20,7 @@ instance_groups:
     release: snort
   properties:
     snort:
+      rules: []
 update:
   canaries: 1
   max_in_flight: 1
