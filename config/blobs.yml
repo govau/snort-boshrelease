@@ -23,6 +23,6 @@ snort-2.9.9.0.tar.gz:
   object_id: e77ac4c2-8381-418b-61ff-cff05c8313ca
   sha: c522b6130655e0d12299af6fd1a613b20259b4e3
 snort-conf.tar.gz:
-  size: 281081
-  object_id: ab585474-5485-42ca-76ad-916a518129df
-  sha: 6cd5c50a0203059aa63f25ee196e1a84e0489f7b
+  size: 281603
+  object_id: 0ee66010-f860-48b5-76f2-83d0a8fc6ac4
+  sha: d5c7a0f39059848fd79a9afa8a7880ead5989133
