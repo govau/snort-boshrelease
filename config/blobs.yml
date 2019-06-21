@@ -1,28 +1,28 @@
 daq-2.0.6.tar.gz:
-  size: 514687
-  object_id: 6b26a6db-c902-4369-563d-d9decb9d367e
-  sha: ec0ebfcd4568a3e4e58c774982c808c414dd71bc
+  size: 518013
+  object_id: db494e8f-a409-4151-6b89-f6907c05d74c
+  sha: sha256:d41da5f7793e66044e6927dd868c0525e7ee4ec1a3515bf74ef9a30cd9273af0
 golang1.6/go1.6.linux-amd64.tar.gz:
   size: 84799480
-  object_id: f17062a0-6a34-4d6c-5123-33ce7404189e
-  sha: 01a6a28dbe31a53103b600979bbbbd63a8104456
+  object_id: 68eb4ecf-f3bb-44ef-7216-3d46761d6bce
+  sha: sha256:5470eac05d273c74ff8bac7bef5bad0b5abbd1c4052efbdbc8db45332e836b0b
 libdnet-1.12.tar.gz:
   size: 959945
-  object_id: 501e3f27-b005-460a-6670-cb65e512ef75
-  sha: 3ce046cde6e1872ccef3920923a768e6556b4cde
+  object_id: 5bca4d91-b39c-4dbf-7d77-76eb16a287dd
+  sha: sha256:b6360659c93fa2e3cde9e0a1fc9c07bc4111f3448c5de856e095eb98315dd424
 libpcap-1.7.4.tar.gz:
   size: 663021
-  object_id: 80e5a9ef-60e9-4f42-6326-e02814a917cb
-  sha: 3f31a7706c1487fca36b8379e511965a8d7cbd70
+  object_id: 3f685edf-bd15-423a-672c-6dd34c33399e
+  sha: sha256:7ad3112187e88328b85e46dce7a9b949632af18ee74d97ffc3f2b41fe7f448b0
 pcre-8.38.tar.gz:
   size: 2053336
-  object_id: 0b52288a-54a6-4fde-4dd9-c77b76e4282b
-  sha: 3ab418d0026c2a4e693ec783bd60660debc32b8f
+  object_id: c27a0782-dd63-468f-673f-9cd0a7d6b6db
+  sha: sha256:9883e419c336c63b0cb5202b09537c140966d585e4d0da66147dc513da13e629
 snort-2.9.9.0.tar.gz:
   size: 6364482
-  object_id: e77ac4c2-8381-418b-61ff-cff05c8313ca
-  sha: c522b6130655e0d12299af6fd1a613b20259b4e3
+  object_id: 15c8c6eb-a468-491a-4131-71969884a587
+  sha: sha256:71b147125e96390a12f3d55796ed5073df77206bd3563d84d3e5a1f19e7d7a56
 snort-conf.tar.gz:
-  size: 321177
-  object_id: fe460045-4da6-4aa8-66ac-464003207138
-  sha: 5801629aab2116dbb1172290aedba524052b51a6
+  size: 94390
+  object_id: ef41b41a-e8ac-4716-4da7-2f916995af1d
+  sha: sha256:e70ad739797dd52d12e81ef4e146dd1a602c8c2b17632ed4114cbf3e70f7f382

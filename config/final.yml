@@ -2,7 +2,7 @@
 blobstore:
   provider: s3
   options:
-    bucket_name: dta-snort-boshrelease
+    bucket_name: aosta-bosh-blobs
     endpoint: https://s3-ap-southeast-2.amazonaws.com
     region: ap-southeast-2
 final_name: snort
